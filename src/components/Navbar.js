@@ -6,19 +6,29 @@ import axios from 'axios'
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const toLogin = async() => {
-navigate('/login')
-  }
+
+
+  
+
+
+        
+        const toLogin = async() => {
+      navigate('/login')
+        }
   const toLogout = async() => {
     localStorage.removeItem('token')
+    localStorage.removeItem('prsname')
     navigate('/login')
       }
       // const toSignup = async() => {
       //   navigate('/signup')
       //     }
-  const onClick = async() => {
-    
-    
+
+
+      console.log("efbeuirbfveujrguebgr888", )
+
+      const nameset = localStorage.getItem('prsname')
+  const getCart = async() => {
     const weburl = `http://localhost:5000/cart/single-cart`
     const token = localStorage.getItem('token')
     const response =  await axios.get(weburl, {
@@ -29,6 +39,8 @@ navigate('/login')
     console.log("this is res get", response)
     navigate('/cart', {state:{response:response.data}})
   }
+
+ 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-light" style={{margin:"0", padding:"0", zIndex:"1"}} >
@@ -54,13 +66,35 @@ navigate('/login')
     
       {/* <i className="fa-solid fa-heart mx-1 "></i> */}
      
-      <i className="fa-solid fa-cart-shopping mx-2 text-white" onClick={onClick}><p className='mx-2' style={{display: 'inline-block', paddingTop:"2vh", fontSize:"13px"}}>Cart</p></i>
+      <i className="fa-solid fa-cart-shopping mx-2 text-white" onClick={getCart}><p className='mx-2' style={{display: 'inline-block', paddingTop:"2vh", fontSize:"13px"}}>Cart</p></i>
       { !localStorage.getItem('token')?<div className='hide'>
       
-      <p className="nisha mx-1 text-white" style={{paddingTop:"2vh"}} onClick={ () => { toLogin()}}> <i class="fa-solid fa-user mx-2"></i>SIGN IN</p>
+      <p className="nisha mx-1 text-white" style={{paddingTop:"2vh"}} onClick={ () => { toLogin()}}> <i className="fa-solid fa-user mx-2" ></i>SIGN IN</p>
       {/* <button type="button" className="btn btn-primary mx-1" onClick={ () => { toSignup()}}>Signup</button> */}
 
-      </div>:  <p className="nisha mx-1 text-white" style={{paddingTop:"2vh"}} onClick={ () => { toLogout()}}> <i class="fa-solid fa-user mx-2"></i>SIGN OUT</p>
+      </div>:  
+      <div className="dropdown-center">
+      <button
+        className="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {nameset}
+      </button>
+      <ul className="dropdown-menu" style={{minWidth:"inherit"}}>
+        <li>
+          <Link className="dropdown-item" to="/profile">
+            Profile
+          </Link>
+        </li>
+        <li>
+          <Link className="dropdown-item" to="/login" onClick={toLogout}>
+            Logout
+          </Link>
+        </li>
+      </ul>
+    </div>
      
 
 

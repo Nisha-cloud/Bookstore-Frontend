@@ -8,6 +8,36 @@ const Login = () => {
 
 
     const navigate = useNavigate()
+//     const getName = async() => {
+//       const token = localStorage.getItem('token')
+//       console.log("wertyuiopkgub", token)
+//       const weburl = 'https://bookstore-backend-production.up.railway.app/userroute/users/me'
+//       axios.get(weburl, {
+//         headers: {
+//           'Authorization': `Bearer ${token}`
+//         }
+//       }).then((response) => {
+//         console.log("babayhvhvhjvhvhjjh vh h h 99999999999999", response)
+//         localStorage.setItem('prsname', response.data.name)
+  
+//       }).catch((error) => {
+//         console.log(error)
+//       })
+  
+//     }
+
+    
+//   setTimeout( ()=> {
+//     if(localStorage.getItem('token')){
+
+//       console.log("kaam kiya h bosss")
+//       getName()
+
+//     }
+
+// }, 1000)
+
+
     const initial = [{
         email: "",
         password: ""
@@ -22,8 +52,10 @@ const Login = () => {
             email: lcredentials.email, password: lcredentials.password
           })
           .then(function (response) {
-            console.log(response);
+            console.log("bank", response);
             localStorage.setItem('token', response.data.token)
+            localStorage.setItem('prsname', response.data.user.name)
+            localStorage.setItem('prsnemail', response.data.user.email)
             navigate('/')
           })
           .catch(function (error) {
