@@ -28,7 +28,7 @@ const Productdetail = () => {
   }
 }
   return (
-    <div className='container my-4' style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
+    <div className='container my-4' style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center', height:"73vh"}}>
       <div className="left">
         <img src={img1} alt="" style={{maxHeight: '45vh'}} />
       </div>

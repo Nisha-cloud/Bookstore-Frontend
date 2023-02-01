@@ -11,7 +11,10 @@ const Cartitems = (props) => {
         const token = localStorage.getItem('token')
         
         console.log("chritmas0", token)
+        console.log("hvucuycc", id)
         const weburl = `https://bookstore-backend-production.up.railway.app/cart/deleteCartItem/${id}`
+
+        
         axios.patch(weburl, {}, {
             headers:{
                 'Authorization': `Bearer ${token}`

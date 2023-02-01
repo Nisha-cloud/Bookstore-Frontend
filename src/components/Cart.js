@@ -94,6 +94,7 @@ const paymentStatus= detail.paymentStatus
     })
     console.log('raitani', cartitem)
     return (
+      <div className="fullbody" style={{minHeight:"80vh"}}>
         <div className='mmain' style={{display: "flex", justifyContent: "space-around", padding:"8vh"}}>
         <div className="mleft" >
         {
@@ -120,6 +121,7 @@ const paymentStatus= detail.paymentStatus
                 </div>
             </div>
 
+            </div>
             </div>
         
     )

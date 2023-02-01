@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
-const SignUp = () => {
+const SignUp = (props) => {
   const initial= [{
     name: "",
     email: "",
@@ -25,6 +25,7 @@ const SignUp = () => {
           localStorage.setItem('prsnemail', response.data.user.email)
           navigate('/')
           console.log('jhdoijuhg')
+          props.showAlert("Registered  successfully", "success")
         }
         
         
@@ -43,7 +44,7 @@ console.log("25", localStorage.getItem('token'))
     
 
   return (
-    <div className='container' style={{paddingTop: "6vh"}}>
+    <div className='container' style={{paddingTop: "6vh" , height:"80vh"}}>
       <form onSubmit={onSubmit}>
       <div className="mb-3">
     <label htmlFor="name" className="form-label">Name</label>

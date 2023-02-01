@@ -29,7 +29,7 @@ const Navbar = () => {
 
       const nameset = localStorage.getItem('prsname')
   const getCart = async() => {
-    const weburl = `http://localhost:5000/cart/single-cart`
+    const weburl = `https://bookstore-backend-production.up.railway.app/cart/single-cart`
     const token = localStorage.getItem('token')
     const response =  await axios.get(weburl, {
       headers: {

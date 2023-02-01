@@ -4,7 +4,7 @@ import axios from 'axios'
 // import { useState } from 'react'
 import {useNavigate, Link} from 'react-router-dom'
 
-const Login = () => {
+const Login = (props) => {
 
 
     const navigate = useNavigate()
@@ -57,6 +57,7 @@ const Login = () => {
             localStorage.setItem('prsname', response.data.user.name)
             localStorage.setItem('prsnemail', response.data.user.email)
             navigate('/')
+            props.showAlert("Logged in successfully", "success")
           })
           .catch(function (error) {
            } )
@@ -68,7 +69,7 @@ const Login = () => {
     
       }
   return (
-    <div className='container' style={{paddingTop: "6vh"}}>
+    <div className='container' style={{paddingTop: "6vh" , height:"80vh"}}>
       <form onSubmit={onSubmit}>
   <div className="mb-3">
     <label htmlFor="email" className="form-label">Email address</label>
