@@ -28,13 +28,11 @@ const UserProfile = () => {
 
             }
         }).then((response) => {
-            console.log('aniket', response)
             localStorage.setItem('prsname' , response.data.name)
             localStorage.setItem('prsnemail' , response.data.email)
 
 
         }).catch((error) => {
-            console.log(error)
         })
 
     }

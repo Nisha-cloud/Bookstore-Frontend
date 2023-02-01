@@ -3,25 +3,24 @@ import { useLocation , useNavigate} from 'react-router-dom'
 import axios from 'axios'
  
 
-const Productdetail = () => {
+const Productdetail = (props) => {
   const navigate = useNavigate()
   const location = useLocation()
   const mybook = location.state.response[0]
   const img1 = `https://bookstore-backend-production.up.railway.app/${mybook.productimg[0]}`
-  console.log('this is location', mybook)
 
   const addtocart = async() => {
     const weburl = "https://bookstore-backend-production.up.railway.app/cart/"
     const token = localStorage.getItem('token')
     if(localStorage.getItem('token')){
-    console.log('jdohjijh', token)
     const response =  await axios.post(weburl,{product: mybook._id}, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     })
-    console.log('nisha', response)
     navigate('/cart')
+    props.showAlert("Product added to cart successfully", "success")
+    console.log("happy", response)
   }
   else{
     navigate('/login')

@@ -4,9 +4,10 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Cartitems from './Cartitems'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = (props) => {
-// const navigate = useNavigate()
+const navigate = useNavigate()
 // const location = useLocation()
 const cartiteminitial = []
 const [cartitem , setCartitem] = useState(cartiteminitial)
@@ -18,10 +19,8 @@ const getCart = async() => {
       'Authorization': `Bearer ${token}`
     }
   }).then((response) => {
-    console.log("nisha" , response.data.data.products)
     setCartitem(response.data.data.products)
   }).catch((error) => {
-console.log(error)
   })
 }
 const initial = []
@@ -39,7 +38,6 @@ const result = await axios.post(weburl,{}, {
       'Authorization': `Bearer ${token}`
     }
           })
-          console.log('happy', result.data.order)
 
 setDetail(result.data.order)
 
@@ -66,6 +64,7 @@ const placeorder = async() => {
     }
   }).then((response) => {
     console.log("cat", response)
+    navigate('/confirmation')
 
   }).catch((error) => {
     console.log(error)
@@ -90,9 +89,7 @@ const paymentStatus= detail.paymentStatus
     useEffect((e) => {
       // Update the document title using the browser API
       getCart()
-      console.log('mu useeffect run')
     })
-    console.log('raitani', cartitem)
     return (
       <div className="fullbody" style={{minHeight:"80vh"}}>
         <div className='mmain' style={{display: "flex", justifyContent: "space-around", padding:"8vh"}}>

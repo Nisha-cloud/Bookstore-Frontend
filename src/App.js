@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import BookState from './components/context/books/BookState';
 import UserProfile from './components/UserProfile';
+import Confirmation from './components/Confirmation';
 // import Category from './components/Category';
 // import Bookitem from './components/Bookitem'
 import Footer from './components/Footer'
@@ -35,7 +36,7 @@ function App() {
     <BookState>
     <Router>
     
-    <Navbar/>
+    <Navbar showAlert={showAlert}/>
     <Alert alert={alert}/>
     
     
@@ -49,9 +50,10 @@ function App() {
 
     <Route path='/profile' element={<UserProfile showAlert={showAlert}/>}></Route>
 
-    <Route path='/productdetail' element={<Productdetail/>}></Route>
+    <Route path='/productdetail' element={<Productdetail showAlert={showAlert}/>}></Route>
    
     <Route path='/cart' element={<Cart showAlert={showAlert}/>}></Route>
+    <Route path='/confirmation' element={<Confirmation/>}></Route>
 
     </Routes>
 

@@ -13,27 +13,22 @@ const SignUp = (props) => {
   const navigate = useNavigate()
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log("jklhghgjg")
     axios.post('https://bookstore-backend-production.up.railway.app/userroute/users', {
         name: credentials.name, email: credentials.email, password: credentials.password
       })
       .then(function (response) {
-        console.log(response);
         if(response.status === 201){
           localStorage.setItem('token', response.data.token)
           localStorage.setItem('prsname', response.data.user.name)
           localStorage.setItem('prsnemail', response.data.user.email)
           navigate('/')
-          console.log('jhdoijuhg')
           props.showAlert("Registered  successfully", "success")
         }
         
         
       })
       .catch(function (error) {
-        console.log(error);
       });
-console.log("25", localStorage.getItem('token'))
      
 
   }

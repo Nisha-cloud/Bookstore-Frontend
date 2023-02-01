@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 // import bookstore from '../Assets/logo bkstr.png'
 
-const Navbar = () => {
+const Navbar = (props) => {
   const navigate = useNavigate()
 
 
@@ -25,19 +25,32 @@ const Navbar = () => {
       //     }
 
 
-      console.log("efbeuirbfveujrguebgr888", )
 
       const nameset = localStorage.getItem('prsname')
+
+
   const getCart = async() => {
+    if(localStorage.getItem('token') === null)
+    {
+      props.showAlert("Please login to access cart", 'danger')
+    }
     const weburl = `https://bookstore-backend-production.up.railway.app/cart/single-cart`
     const token = localStorage.getItem('token')
+    
     const response =  await axios.get(weburl, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     })
-    console.log("this is res get", response)
+    
+    console.log("this is res get", response.data)
+    if(response.data.success === true){
     navigate('/cart', {state:{response:response.data}})
+    }
+    else{
+  props.showAlert("Your cart is empty", "success")
+    }
+  
   }
 
  

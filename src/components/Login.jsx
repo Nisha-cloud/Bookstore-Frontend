@@ -47,12 +47,10 @@ const Login = (props) => {
     const onSubmit = async(e)=>{
 
         e.preventDefault()
-        console.log("jklhghgjg")
         axios.post('https://bookstore-backend-production.up.railway.app/userroute/users/login', {
             email: lcredentials.email, password: lcredentials.password
           })
           .then(function (response) {
-            console.log("bank", response);
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('prsname', response.data.user.name)
             localStorage.setItem('prsnemail', response.data.user.email)
